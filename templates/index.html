@@ -4,7 +4,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    {% block style %}<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">{% endblock %}
   </head>
   <body>
     <header>
@@ -17,12 +17,12 @@
         </nav>
     </header>
     <ul class='news-category'>
-      <li>Latest</li>
-      <li>Crime</li>
-      <li>Lifestyle</li>
-      <li>Sports</li>
-      <li>Technology</li>
-      <li>Cryptocurrency</li>
+      <li><a href="{{ url_for('home') }}">Latest</a></li>
+      <li><a href="{{ url_for('query', genre='crime') }}">Crime</a></li>
+      <li><a href="{{ url_for('query', genre='lifestyle') }}">Lifestyle</a></li>
+      <li><a href="{{ url_for('query', genre='sport') }}">Sports</a></li>
+      <li><a href="{{ url_for('query', genre='technology') }}">Technology</a></li>
+      <li><a href="{{ url_for('query', genre='cryptocurrency') }}">Cryptocurrency</a></li>
     </ul>
     <main class="main-container">
       {% for key, item in news.items() %}
@@ -34,7 +34,11 @@
           <img src="{{ item['urlToImage'] }}" alt="">
         </section>
       {% endfor %}
-    </main>    
+    </main>
+    {% block footer %}
+    <footer>
+    </footer>
+    {% endblock %}
 </body>
 <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </html>

@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block footer %}
+  <div class='pagination'>
+    <a href="" class='pg-cng'>&laquo;</a>
+    <a>{{ page }}</a>
+    <p>of</p>
+    <p> {{ totalPage }}</p>
+    <a href="" class='pg-cng'>&raquo;</a>
+  </div>
+{% endblock %}
