@@ -7,8 +7,56 @@ header{
  display: flex; 
  justify-content: space-between;
 }
-nav li{
+li{
   list-style-type: none;
+}
+.news-category{
+  justify-content: space-around;
+}
+ul{
+  display: flex;
+  gap: 20px;
+}
+.read-btn{
+  color: white;
+  background-color: black;
+  width: 150px;
+  border-radius: 7px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.read-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.read-btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.5s;
+}
+
+.read-btn:hover span {
+  padding-right: 25px;
+}
+
+.read-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.read-btn:hover{
+  color: black;
+  background-color: white;
+  border: 1px solid #000;
 }
 .news-item{
   display: flex;
