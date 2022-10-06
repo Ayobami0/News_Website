@@ -4,9 +4,29 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="static/css/style.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
   </head>
   <body>
-    <p>Hello world</p>
-  </body>
+    <header>
+        <h1>AFY NEWS ON THE GO!</h1>
+        <nav>
+            <ul>
+                <li><a accesskey="h" href="">HOME</a></li>
+                <li><a accesskey="a" href="">ABOUT US</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-container">
+      {% for key, item in news.items() %}
+        <section class='news-item'>
+          <div class='text-con'>
+            <h2>{{ item['title'] }}</h2>
+            <a href="{{ item['url'] }}"><p>{{ item['description'] }}</p></a>
+          </div>
+          <img src="{{ item['urlToImage'] }}" alt="">
+        </section>
+      {% endfor %}
+    </main>    
+</body>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </html>
