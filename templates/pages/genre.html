@@ -1,10 +1,12 @@
 {% extends "index.html" %}
-{% block footer %}
+{% block pagination %}
+  {% set nextPage = url_for('query', genre=genre, page=page+1) %}
   <div class='pagination'>
-    <a href="" class='pg-cng'>&laquo;</a>
-    <a>{{ page }}</a>
-    <p>of</p>
-    <p> {{ totalPage }}</p>
-    <a href="" class='pg-cng'>&raquo;</a>
+    <a href="{{ url_for('query', genre=genre, page=page-1) }}" class='pg-cng' id='prev-btn'>&laquo;</a>
+    <form method='POST'>
+      <input type='text' id='page-no' placeholder='{{ page }}' name='page-no'>
+    </form>
+    <a id='max-no'>of {{ totalPage }}</a>
+    <a href="{{ nextPage }}" class='pg-cng' id='next-btn'>&raquo;</a>
   </div>
 {% endblock %}

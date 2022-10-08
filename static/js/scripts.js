@@ -1,23 +1,11 @@
-let slideIndex = 1;
-showSlides(slideIndex);
+prevBtn = document.getElementById('prev-btn')
+nextBtn = document.getElementById('next-btn')
+pageNo = document.getElementById('page-no').innerHTMl
+maxPage = document.getElementById('max-no').textContent
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+if (pageNo == 1){
+  prevBtn.setAttribute('href', 'javascript:void(0)')
 }
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+if (pageNo == maxPage){
+  nextBtn.href = ''
 }
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("slides");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex-1].style.display = "block";
-} 

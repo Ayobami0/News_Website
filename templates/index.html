@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block style %}<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">{% endblock %}
+    <script src="https://kit.fontawesome.com/ef2bf186f8.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
-        <h1>AFY NEWS ON THE GO!</h1>
+        <p class='logo'>NEWS ON THE GO!</p>
         <nav>
             <ul>
                 <li><a accesskey="h" href="">HOME</a></li>
@@ -18,27 +19,51 @@
     </header>
     <ul class='news-category'>
       <li><a href="{{ url_for('home') }}">Latest</a></li>
-      <li><a href="{{ url_for('query', genre='crime') }}">Crime</a></li>
-      <li><a href="{{ url_for('query', genre='lifestyle') }}">Lifestyle</a></li>
-      <li><a href="{{ url_for('query', genre='sport') }}">Sports</a></li>
-      <li><a href="{{ url_for('query', genre='technology') }}">Technology</a></li>
-      <li><a href="{{ url_for('query', genre='cryptocurrency') }}">Cryptocurrency</a></li>
+      <li><a href="{{ url_for('query', genre='crime', page=1) }}">Crime</a></li>
+      <li><a href="{{ url_for('query', genre='lifestyle', page=1) }}">Lifestyle</a></li>
+      <li><a href="{{ url_for('query', genre='sport', page=1) }}">Sports</a></li>
+      <li><a href="{{ url_for('query', genre='technology', page=1) }}">Technology</a></li>
+      <li><a href="{{ url_for('query', genre='cryptocurrency', page=1) }}">Cryptocurrency</a></li>
     </ul>
-    <main class="main-container">
-      {% for key, item in news.items() %}
-        <section class='news-item'>
-          <div class='text-con'>
-            <h2>{{ item['title'] }}</h2>
-            <a href="{{ item['url'] }}" class='read-btn'><span>Read More</span></a>
-          </div>
-          <img src="{{ item['urlToImage'] }}" alt="">
-        </section>
-      {% endfor %}
-    </main>
-    {% block footer %}
-    <footer>
-    </footer>
+    <section class='content-body'>
+      <main class="main-container">
+        {% for key, item in news.items() %}
+          <section class='news-item'>
+            <div class='text-con'>
+              <p class='title'>{{ item['title'] }}</p>
+              <a href="{{ item['url'] }}" class='read-btn'><span>Read More</span></a>
+            </div>
+            <img src="{{ item['urlToImage'] }}" alt="">
+          </section>
+        {% endfor %}
+      </main>
+      <section class='ad-nav'>
+        <p class='heading'>HEADLINE NEWS</p>
+        <div class='scroll-container'>
+        {% for key, item in latest.items() %}
+          <section class='top-news'>
+            <div class='container'>
+              <img src="{{ item['urlToImage'] }}" alt="">
+              <div class='overlay'>
+                <div class='text'>
+                  <a href="{{ item['url'] }}"><span class='numbering'>{{ key }}</span> {{ item['title'] }}</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        {% endfor %}
+        </div>
+      </section>
+    </section>
+    {% block pagination %}
     {% endblock %}
+    <footer>
+      <div class='socials'>
+       <i class="fa-brands fa-facebook"></i> 
+       <i class="fa-brands fa-github"></i> 
+       <i class="fa-brands fa-linkedin"></i> 
+      </div>
+    </footer>
 </body>
 <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </html>
